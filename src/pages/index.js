@@ -87,7 +87,6 @@ const IndexPage = ({
           muted
           autoPlay
           src={IntroVideo}
-          poster={IntroVideoPreviewImage}
           type="video/mp4"
         >
           <p>Your browser does not support the video element.</p>
