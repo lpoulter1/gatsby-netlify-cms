@@ -18,6 +18,9 @@ body {
 .homepage-video {
   flex: 1;
   width: 100vw;
+  max-height: 92vh;
+  max-height: calc(var(--vh, 1vh) * 92);
+  max-width:100%; /* avoids horizontal scroll bars */
 }
 
 .hero-section {
