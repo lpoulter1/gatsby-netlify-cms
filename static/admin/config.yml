@@ -9,7 +9,7 @@ collections:
   - name: news
     preview_path: "news/{{year}}/{{month}}/{{slug}}"
     label: News
-    folder: news
+    folder: /collections/news
     create: true
     fields:
       - { name: date, label: Date, widget: datetime }

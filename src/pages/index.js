@@ -1,25 +1,20 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import IntroVideo from "../assets/homepageVideo.mp4"
+import "./reset.css"
 import "./site.css"
 
-const PostLink = ({ post }) => (
+const Post = ({ post }) => (
   <article className="card ">
-    <Link to={post.frontmatter.path}>
-      {!!post.frontmatter.thumbnail && (
-        <img
-          src={post.frontmatter.thumbnail}
-          alt={post.frontmatter.title + "- Featured Shot"}
-        />
-      )}
-    </Link>
+    <img
+      src={post.frontmatter.thumbnail}
+      alt={post.frontmatter.title + "- Featured Shot"}
+      width="200px"
+    />
     <header>
-      <h2 className="post-title">
-        <Link to={post.frontmatter.path} className="post-link">
-          {post.frontmatter.title}
-        </Link>
-      </h2>
+      <h2 className="post-title">{post.frontmatter.title}</h2>
       <div className="post-meta">{post.frontmatter.date}</div>
+      <div className="post-meta">{post.frontmatter.html}</div>
     </header>
   </article>
 )
@@ -31,11 +26,11 @@ const IndexPage = ({
 }) => {
   const Posts = edges
     .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
-    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+    .map(edge => <Post key={edge.node.id} post={edge.node} />)
 
   return (
     <div>
-      <div>
+      <div className="hero-section">
         <video
           className="homepage-video"
           muted
@@ -48,9 +43,9 @@ const IndexPage = ({
         </video>
       </div>
 
-      <div>
-        <h2>Blog Posts &darr;</h2>
-        <div className="grids">{Posts}</div>
+      <div className="news-section">
+        <h2>News</h2>
+        <div className="news-posts">{Posts}</div>
       </div>
     </div>
   )
@@ -59,6 +54,13 @@ const IndexPage = ({
 export default IndexPage
 export const pageQuery = graphql`
   query indexPageQuery {
+    markdownRemark {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        title
+      }
+    }
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
@@ -66,7 +68,7 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 250)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            path
+            thumbnail
             title
           }
         }
