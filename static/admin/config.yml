@@ -6,12 +6,13 @@ media_folder: static/assets
 public_folder: /assets
 
 collections:
-  - name: blog
-    label: Blog
-    folder: blog
+  - name: news
+    preview_path: "news/{{year}}/{{month}}/{{slug}}"
+    label: News
+    folder: news
     create: true
     fields:
-      - { name: path, label: Path }
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - { name: body, label: Body, widget: markdown }

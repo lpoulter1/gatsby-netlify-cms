@@ -8,7 +8,8 @@ body {
 }
 
 .homepage-video {
+  background-color: #a15e7f;
   width: 100vw;
   max-height: 100vh;
-  object-fit: cover;
 }
+
