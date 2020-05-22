@@ -10,19 +10,10 @@ import {
   Amazon,
   SoundCloud,
 } from "../icons"
+import { useSetViewportCssVars } from "./useSetViewportCssVars"
 
 import "./reset.css"
 import "./site.css"
-
-// eslint-disable-next-line
-typeof window !== `undefined` ? setVH() : null
-
-function setVH(params) {
-  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-  let vh = window && window.innerHeight * 0.01
-  // Then we set the value in the --vh custom property to the root of the document
-  document.documentElement.style.setProperty("--vh", `${vh}px`)
-}
 
 const Post = ({ post }) => (
   <article className="card ">
@@ -80,6 +71,8 @@ const IndexPage = ({
     allMarkdownRemark: { edges },
   },
 }) => {
+  useSetViewportCssVars()
+
   const Posts = edges
     .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
     .map(edge => <Post key={edge.node.id} post={edge.node} />)
