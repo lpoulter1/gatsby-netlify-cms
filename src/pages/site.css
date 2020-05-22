@@ -11,8 +11,9 @@
   display: none;
 }
 
-.html {
+body html {
   height: 100%; /* Account for nav bar on mobile */
+  width: 100%;
 }
 
 .homepage-video {
@@ -22,8 +23,9 @@
 
 .hero-section {
   display: flex;
-    flex-direction: column;
-  height: 100vh;
+  flex-direction: column;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
   background-color: var(--dim-gray);
 }
 
