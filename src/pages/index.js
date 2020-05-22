@@ -14,6 +14,7 @@ import {
 import "./reset.css"
 import "./site.css"
 
+// eslint-disable-next-line
 typeof window !== `undefined` ? setVH() : null
 
 function setVH(params) {
@@ -95,7 +96,9 @@ const IndexPage = ({
         >
           <p>Your browser does not support the video element.</p>
         </video>
-        <SocialIcons />
+        <div>
+          <SocialIcons />
+        </div>
       </div>
 
       <div className="news-section">
