@@ -11,9 +11,8 @@
   display: none;
 }
 
-body html {
-  height: 100%; /* Account for nav bar on mobile */
-  width: 100%;
+body {
+  font-family: "OpenSans";
 }
 
 .homepage-video {
